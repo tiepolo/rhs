@@ -2,8 +2,8 @@ import csv
 import datetime
 
 # Define the input and output file names
-input_file = 'membership.csv'
-output_file = 'membership_parsed.csv'
+input_file = 'resolution_raw.csv'
+output_file = 'resolution_parsed.csv'
 
 # Define a function to convert timestamp to yyyy-mm-dd format
 def convert_timestamp(timestamp):
@@ -28,9 +28,10 @@ with open(input_file, 'r') as csv_in, open(output_file, 'w', newline='') as csv_
 
     for row in reader:
         # Convert 'start_at', 'end_at', and 'membership_end_at' columns to yyyy-mm-dd format
-        row['start_at'] = convert_timestamp(row['start_at'])
-        row['end_at'] = convert_timestamp(row['end_at'])
-        row['membership_end_at'] = convert_timestamp(row['membership_end_at'])
+        row['created_at'] = convert_timestamp(row['created_at'])
+        row['updated_at'] = convert_timestamp(row['updated_at'])
+        row['started_at'] = convert_timestamp(row['started_at'])
+        row['ended_at'] = convert_timestamp(row['ended_at'])
 
         # Write the modified row to the output CSV file
         writer.writerow(row)
